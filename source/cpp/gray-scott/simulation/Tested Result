@@ -1,0 +1,516 @@
+========================================
+grid:             200x200x200
+restart:          no
+steps:            1000
+plotgap:          10
+F:                0.01
+k:                0.05
+dt:               2
+Du:               0.2
+Dv:               0.1
+noise:            1e-07
+output:           gs.bp
+adios_config:     adios2.xml
+process layout:   2x2x1
+local grid size:  100x100x200
+========================================
+Simulation at step 10 writing output step     1
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 20 writing output step     2
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 30 writing output step     3
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 40 writing output step     4
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 50 writing output step     5
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 60 writing output step     6
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 70 writing output step     7
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 80 writing output step     8
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 90 writing output step     9
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 100 writing output step     10
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 110 writing output step     11
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 120 writing output step     12
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 130 writing output step     13
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 140 writing output step     14
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 150 writing output step     15
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 160 writing output step     16
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 170 writing output step     17
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 180 writing output step     18
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 190 writing output step     19
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 200 writing output step     20
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 210 writing output step     21
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 220 writing output step     22
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 230 writing output step     23
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 240 writing output step     24
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 250 writing output step     25
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 260 writing output step     26
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 270 writing output step     27
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 280 writing output step     28
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 290 writing output step     29
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 300 writing output step     30
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 310 writing output step     31
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 320 writing output step     32
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 330 writing output step     33
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 340 writing output step     34
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 350 writing output step     35
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 360 writing output step     36
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 370 writing output step     37
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 380 writing output step     38
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 390 writing output step     39
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 400 writing output step     40
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 410 writing output step     41
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 420 writing output step     42
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 430 writing output step     43
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 440 writing output step     44
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 450 writing output step     45
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 460 writing output step     46
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 470 writing output step     47
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 480 writing output step     48
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 490 writing output step     49
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 500 writing output step     50
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 510 writing output step     51
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 520 writing output step     52
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 530 writing output step     53
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 540 writing output step     54
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 550 writing output step     55
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 560 writing output step     56
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 570 writing output step     57
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 580 writing output step     58
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 590 writing output step     59
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 600 writing output step     60
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 610 writing output step     61
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 620 writing output step     62
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 630 writing output step     63
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 640 writing output step     64
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 650 writing output step     65
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 660 writing output step     66
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 670 writing output step     67
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 680 writing output step     68
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 690 writing output step     69
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 700 writing output step     70
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 710 writing output step     71
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 720 writing output step     72
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 730 writing output step     73
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 740 writing output step     74
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 750 writing output step     75
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 760 writing output step     76
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 770 writing output step     77
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 780 writing output step     78
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 790 writing output step     79
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 800 writing output step     80
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 810 writing output step     81
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 820 writing output step     82
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 830 writing output step     83
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 840 writing output step     84
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 850 writing output step     85
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 860 writing output step     86
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 870 writing output step     87
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 880 writing output step     88
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 890 writing output step     89
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 900 writing output step     90
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 910 writing output step     91
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 920 writing output step     92
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 930 writing output step     93
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 940 writing output step     94
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 950 writing output step     95
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 960 writing output step     96
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 970 writing output step     97
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 980 writing output step     98
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 990 writing output step     99
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+Simulation at step 1000 writing output step     100
+perrank 64000008 perstep 0 in rank 2 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 0 perstep 0 in rank 0 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 96000012 perstep 0 in rank 3 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
+perrank 32000004 perstep 0 in rank 1 u size 16000000 v size 16000000 step size 4 Allreduce 192000024 Total size32000004
