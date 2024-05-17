@@ -6,17 +6,39 @@
 
 // 2023 2 14  modify
 
-//ADIOS2
-#include <adios2.h>
-#include <mpi.h>
-#include <vector>
-#include <fstream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <malloc.h>
+#include <assert.h>
+#include <math.h>
+#include <time.h>
+#include <sys/time.h>
+#include <string.h>
+#include <omp.h>
+#include <ftrace.h> // For VE??
 
-#include "../../gray-scott/common/timer.hpp"
-#include "../../gray-scott/simulation/gray-scott.h"
-#include "../../gray-scott/simulation/restart.h"
-#include "../../gray-scott/simulation/writer.h"
+#define LID 2
+#define WALL 1
+#define FLUID 0
 
+#define nx 100
+#define ny 100
+#define nz 100
+#define direc 19
+
+#define NUM_THREADS 8 //
+
+#ifndef max
+#define max(x, y) (((x) <= (y)) ? (y) : (x))
+#endif
+
+#ifndef min
+#define min(x, y) (((x) >= (y)) ? (y) : (x))
+#endif
+
+#define abs(x) (((x) < 0) ? (-x) : (x)) /* NOTICE: when using expression a+b, abs((a+b)) should be used instead of abs(a+b) */
+
+double cpu_time();
 
 void init_geo(int wall[nz][ny][nx]);
 
@@ -28,55 +50,47 @@ void stream(double f[direc][nz][ny][nx], double ft[direc][nz][ny][nx]);
 void collision_bc(int wall[nz][ny][nx], double u[nz][ny][nx], double v[nz][ny][nx], double w[nz][ny][nx], double rho[nz][ny][nx], double f[direc][nz][ny][nx], double ft[direc][nz][ny][nx], double rho_0, double u_0,
                   double ow, double ow1);
 
+void data_output(int wall[nz][ny][nx], double u[nz][ny][nx], double v[nz][ny][nx], double w[nz][ny][nx], double rho[nz][ny][nx], int atime);
 
-  int wall[nz][ny][nx];
-  double ft[direc][nz][ny][nx];
-  double f[direc][nz][ny][nx], u[nz][ny][nx], v[nz][ny][nx], w[nz][ny][nx], rho[nz][ny][nx];
+extern void omp_set_num_threads(int num_threads); // Set number of threads
+extern int omp_get_num_threads(void);             // Get number of threads
+extern int omp_get_max_threads(void);             // Get upper bounds on number of threads
+extern int omp_get_thread_num(void);              // Get thread number
+
+// Beginning of user-specified region
+extern int ftrace_region_begin(const char *id);
+// End of user-specified region
+extern int ftrace_region_end(const char *id);
 
 int main(int argc, char *argv[])
 {
-  //MPI for ADIOS2
-  int provided;
-  MPI_Init_thread(&argc, &argv, MPI_THREAD_MULTIPLE, &provided);
-  int rank, procs, wrank;
 
-  MPI_Comm_rank(MPI_COMM_WORLD, &wrank);
+  // define variables
+  int atime, time_max, output;
 
-  const unsigned int color = 1;
-  MPI_Comm comm;
-  MPI_Comm_split(MPI_COMM_WORLD, color, wrank, &comm);
+  double Re, rho_0, u_0, L_ref, visc, tau, omega, ow, ow1;
 
-  MPI_Comm_rank(comm, &rank);
-  MPI_Comm_size(comm, &procs);
+  int wall[nz][ny][nx];
 
-  //ADIOS2
-  Settings settings = Settings::from_json(argv[1]);
+  double ft[direc][nz][ny][nx];
 
-  adios2::ADIOS adios(settings.adios_config, comm);
-  adios2::IO io_main = adios.DeclareIO("SimulationOutput");
-  adios2::IO io_ckpt = adios.DeclareIO("SimulationCheckpoint");
-
-
+  double f[direc][nz][ny][nx], u[nz][ny][nx], v[nz][ny][nx], w[nz][ny][nx], rho[nz][ny][nx];
 
   //--------------------------------------------------------------------------------------------------
 
-  int atime = 0;
-  int time_max = settings.steps;
-  int output = settings.plotgap;
+  atime = 0;
+  time_max = 300000;
+  output = 300000;
+  Re = 100;
+  rho_0 = 1.0;
+  u_0 = 0.1;
 
-  double Re = 100;
-  double rho_0 = 1.0;
-  double u_0 = 0.1;
-  double L_ref = 1.0 * (nx - 1);         /* 1.0 is the length of lattice */
-  double visc = u_0 * L_ref / Re;        /* viscosity derived from Re */
-  double tau = (6.0 * visc + 1.0) / 2.0; /* tau derived from viscosity */
-  double omega = 1.0 / tau;
-  double ow1 = (1.0f - omega);
-  double ow = omega;
-
-  //adios2
-  Writer writer_main(settings, io_main);
-  writer_main.open(settings.output);
+  L_ref = 1.0 * (nx - 1);         /* 1.0 is the length of lattice */
+  visc = u_0 * L_ref / Re;        /* viscosity derived from Re */
+  tau = (6.0 * visc + 1.0) / 2.0; /* tau derived from viscosity */
+  omega = 1.0 / tau;
+  ow1 = (1.0f - omega);
+  ow = omega;
 
   //-------------------------------------------------------------------------------------------------------
   // geo define
@@ -92,70 +106,21 @@ int main(int argc, char *argv[])
   // loop
   // stream  collision   BC
 
-
-#ifdef ENABLE_TIMERS
-    Timer timer_total;
-    Timer timer_compute;
-    Timer timer_write;
-
-    std::ostringstream log_fname;
-    log_fname << "/home/gp.sc.cc.tohoku.ac.jp/tseng/ADIOS2/Tutorial/VH2/share/adios2-examples/gray-scott/gray_scott_pe_" << rank << ".log";
-
-    std::ofstream log(log_fname.str());
-    log << "step\ttotal_gs\tcompute_gs\twrite_gs" << std::endl;
-#endif
-
   for (atime = 0; atime <= time_max; atime++)
   {
-#ifdef ENABLE_TIMERS
-        MPI_Barrier(comm);
-        timer_total.start();
-        timer_compute.start();
-#endif
 
     stream(f, ft);
 
     collision_bc(wall, u, v, w, rho, f, ft, rho_0, u_0, ow, ow1);
 
-#ifdef ENABLE_TIMERS
-        timer_compute.stop();
-        MPI_Barrier(comm);
-        timer_write.start();
-#endif
-
     if (atime % output == 0)
     {
-      writer_main.write(u, v, w, rho, atime);
-      if (rank == 0)
-      {
-        std::cout << "Simulation at step " << atime << " writing output step     " << atime / settings.plotgap << std::endl;
-      }
+      data_output(wall, u, v, w, rho, atime);
     }
-
-#ifdef ENABLE_TIMERS
-        double time_write = timer_write.stop();
-        double time_step = timer_total.stop();
-        MPI_Barrier(comm);
-
-        log << atime << "\t" << timer_total.elapsed() << "\t"
-            << timer_compute.elapsed() << "\t" << timer_write.elapsed()
-            << std::endl;
-#endif
 
   } //   --------  end loop ---------------------
 
   //-------------------------------------------------------------------------------------------------------
-
-    writer_main.close();
-
-#ifdef ENABLE_TIMERS
-    log << "total\t" << timer_total.elapsed() << "\t" << timer_compute.elapsed()
-        << "\t" << timer_write.elapsed() << std::endl;
-
-    log.close();
-#endif
-
-    MPI_Finalize();
 
   return 0;
 } /***** end main *****/
@@ -270,6 +235,13 @@ void stream(double f[direc][nz][ny][nx], double ft[direc][nz][ny][nx])
 {
   int x, y, z;
   int jxm, jxp, jym, jyp, jzm, jzp; // 这几个值是共享变量
+                                    // int nxyz;
+  // int temp;
+  omp_set_num_threads(NUM_THREADS);
+
+#ifdef FTRACE
+  (void)ftrace_region_begin("stream_all");
+#endif /* FTRACE */
 
 #pragma omp parallel for private(jxp, jxm, jyp, jym, jzm, jzp)
 
@@ -310,6 +282,9 @@ void stream(double f[direc][nz][ny][nx], double ft[direc][nz][ny][nx])
       }
     }
   }
+#ifdef FTRACE
+  (void)ftrace_region_end("stream_all");
+#endif /* FTRACE */
 
   // 三维cavity的streaming步骤优化太复杂了，暂时先用之前简约的，后续确有需要，再简化。
 }
@@ -324,6 +299,11 @@ void collision_bc(int wall[nz][ny][nx], double u[nz][ny][nx], double v[nz][ny][n
 
   int nyz;
 
+  omp_set_num_threads(NUM_THREADS);
+
+#ifdef FTRACE
+  (void)ftrace_region_begin("collision_BC_top");
+#endif /* FTRACE */
 #pragma omp parallel for private(uu, vv, ww, rhorho, square, nuu, nvv, nww, nrhorho, nsquare)
 
   for (int y = 0; y < ny; y++)
@@ -376,8 +356,15 @@ void collision_bc(int wall[nz][ny][nx], double u[nz][ny][nx], double v[nz][ny][n
     }
   }
 
+#ifdef FTRACE
+  (void)ftrace_region_end("collision_BC_top");
+#endif /* FTRACE */
+
   //====================================================================================================
 
+#ifdef FTRACE
+  (void)ftrace_region_begin("collision_BC_left");
+#endif /* FTRACE */
 
 #pragma omp parallel for
   for (int z = 0; z < nz - 1; z++) // vectorized loop.
@@ -411,7 +398,15 @@ void collision_bc(int wall[nz][ny][nx], double u[nz][ny][nx], double v[nz][ny][n
       f[18][z][y][0] = ft[15][z][y][0];
     }
   }
+#ifdef FTRACE
+  (void)ftrace_region_end("collision_BC_left");
+#endif /* FTRACE */
+
   //====================================================================================================
+
+#ifdef FTRACE
+  (void)ftrace_region_begin("collision_BC_right");
+#endif /* FTRACE */
 
 #pragma omp parallel for //  right solid
 
@@ -447,7 +442,15 @@ void collision_bc(int wall[nz][ny][nx], double u[nz][ny][nx], double v[nz][ny][n
       f[18][z][y][nx - 1] = ft[15][z][y][nx - 1];
     }
   }
+#ifdef FTRACE
+  (void)ftrace_region_end("collision_BC_right");
+#endif /* FTRACE */
+
   //====================================================================================================
+
+#ifdef FTRACE
+  (void)ftrace_region_begin("collision_BC_bottom");
+#endif /* FTRACE */
 
 #pragma omp parallel for
   for (int y = 0; y < ny; y++) // vectorized loop.
@@ -481,7 +484,15 @@ void collision_bc(int wall[nz][ny][nx], double u[nz][ny][nx], double v[nz][ny][n
     }
   }
 
+#ifdef FTRACE
+  (void)ftrace_region_end("collision_BC_bottom");
+#endif /* FTRACE */
+
   //====================================================================================================
+
+#ifdef FTRACE
+  (void)ftrace_region_begin("collision_BC_front");
+#endif /* FTRACE */
 
 #pragma omp parallel for
   for (int z = 0; z < nz - 1; z++) // vectorized loop.
@@ -515,7 +526,15 @@ void collision_bc(int wall[nz][ny][nx], double u[nz][ny][nx], double v[nz][ny][n
     }
   }
 
+#ifdef FTRACE
+  (void)ftrace_region_end("collision_BC_front");
+#endif /* FTRACE */
+
   //====================================================================================================
+
+#ifdef FTRACE
+  (void)ftrace_region_begin("collision_BC_back");
+#endif /* FTRACE */
 
 #pragma omp parallel for
   for (int z = 0; z < nz - 1; z++) // vectorized loop.
@@ -549,7 +568,13 @@ void collision_bc(int wall[nz][ny][nx], double u[nz][ny][nx], double v[nz][ny][n
     }
   }
 
+#ifdef FTRACE
+  (void)ftrace_region_end("collision_BC_back");
+#endif /* FTRACE */
 //----------------------------------------------------------
+#ifdef FTRACE
+  (void)ftrace_region_begin("collision_BC_fluid");
+#endif /* FTRACE */
 #pragma omp parallel for private(us, vs, ws, rhos, rhow, US)
 
   for (int z = 1; z < nz - 1; z++)
@@ -604,4 +629,83 @@ void collision_bc(int wall[nz][ny][nx], double u[nz][ny][nx], double v[nz][ny][n
       }
     }
   }
+
+#ifdef FTRACE
+  (void)ftrace_region_end("collision_BC_fluid");
+#endif /* FTRACE */
+
 } /***** end collision *****/
+
+void data_output(int wall[nz][ny][nx], double u[nz][ny][nx], double v[nz][ny][nx], double w[nz][ny][nx], double rho[nz][ny][nx], int atime)
+{
+  int kk1, kk2, kk3, kk4, kk5, kk6, kk7;
+  int kk8, kk9, kk10, kk11, kk12, kk13, kk14, kk15, kk16;
+  int x, y, z;
+  char data_name[200];
+
+  FILE *file_dat;
+
+  kk1 = atime;
+  kk2 = kk1 / 10000000;
+  kk3 = kk1 - kk2 * 10000000;
+  kk4 = kk3 / 1000000;
+  kk5 = kk3 - kk4 * 1000000;
+  kk6 = kk5 / 100000;
+  kk7 = kk5 - kk6 * 100000;
+  kk8 = kk7 / 10000;
+  kk9 = kk7 - kk8 * 10000;
+  kk10 = kk9 / 1000;
+  kk11 = kk9 - kk10 * 1000;
+  kk12 = kk11 / 100;
+  kk13 = kk11 - kk12 * 100;
+  kk14 = kk13 / 10;
+  kk15 = kk13 - kk14 * 10;
+  kk16 = kk15 / 1;
+
+  sprintf(data_name, "%d%d%d%d%d%d%d%d.txt", kk2, kk4, kk6, kk8, kk10, kk12, kk14, kk16);
+
+  file_dat = fopen(data_name, "w");
+
+  fputs("VARIABLES=X,Y,Z,RHO,U,V,W\n", file_dat);
+  fprintf(file_dat, "ZONE I=%6d, J=%6d, K=%6d, F=POINT\n", nx, ny, nz);
+
+  for (int z = 0; z < nz; z++)
+  {
+    for (int y = 0; y < ny; y++)
+    {
+      for (int x = 0; x < nx; x++)
+      {
+
+        fprintf(file_dat, "%lf %lf  %lf  %20.6e %20.6e %20.6e %20.6e \n",
+                (double)x, (double)y, (double)z, rho[z][y][x], u[z][y][x], v[z][y][x], w[z][y][x]);
+      }
+    }
+  }
+
+  fclose(file_dat); /**end of ordinary flie output **/
+}
+
+double cpu_time()
+{
+
+  struct timeval tm;
+  double t;
+  static int base_sec = 0, base_usec = 0;
+
+  gettimeofday(&tm, NULL);
+
+  if (base_sec == 0 && base_usec == 0)
+  {
+    base_sec = tm.tv_sec;
+    base_usec = tm.tv_usec;
+    t = 0.0;
+  }
+  else
+  {
+    t = (double)(tm.tv_sec - base_sec) +
+        ((double)(tm.tv_usec - base_usec)) / 1.0e6;
+  }
+
+  return t;
+
+} /***** end cpu_time *****/
