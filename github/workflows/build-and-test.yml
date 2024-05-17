@@ -1,0 +1,48 @@
+name: Build and Test
+
+#on: 
+#  push: 
+#    branches: 
+#    - master 
+#  pull_request: 
+#    branches: 
+#    - master 
+
+concurrency:
+  group: ${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  linux-cmake:
+    runs-on: ubuntu-latest
+    container:
+      image: ornladios/adios2:release_28-ubuntu-bionic
+    defaults:
+      run:
+        shell: bash -l {0}
+
+    steps:
+    - name: User Setup
+      shell: sh -e {0}
+      run: |
+        sudo chown -R 1000:1000 .
+        sudo ln -s $PWD/source/scripts/ci/user-setup.sh /etc/profile.d/zzz-adios2-ci.sh
+    - uses: actions/checkout@v3
+      with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: source
+    - name: Environment
+      run: env | sort
+    - name: Configure
+      run: |
+          mkdir -p build
+          cd build
+          cmake ../source
+    - name: Build
+      run: |
+          cd build
+          make -j$(grep -c '^processor' /proc/cpuinfo)
+    - name: Test
+      run: |
+          cd build
+          ctest -VV -j 1
