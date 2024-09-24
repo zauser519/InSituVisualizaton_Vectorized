@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <vector>
 
+#include <adios2.h>
 #include <mpi.h>
 #include <cstdlib>
 
@@ -13,6 +14,18 @@
 #include "../../gray-scott/simulation/restart.h"
 #include "../../gray-scott/simulation/writer.h"
 
+
+void print_io_settings(const adios2::IO &io)
+{
+    std::cout << "Simulation writes data using engine type:              "
+              << io.EngineType() << std::endl;
+    auto ioparams = io.Parameters();
+    std::cout << "IO parameters:  " << std::endl;
+    for (const auto &p : ioparams)
+    {
+        std::cout << "    " << p.first << " = " << p.second << std::endl;
+    }
+}
 
 void print_settings(const Settings &s, int restart_step)
 {
@@ -50,7 +63,7 @@ void print_simulator_settings(const GrayScott &s)
 
 int main(int argc, char **argv)
 {
-    int provided;
+    int provided, fd;
     MPI_Init_thread(&argc, &argv, MPI_THREAD_MULTIPLE, &provided);
     int rank, procs, wrank;
 
@@ -63,6 +76,11 @@ int main(int argc, char **argv)
     MPI_Comm_rank(comm, &rank);
     MPI_Comm_size(comm, &procs);
 
+    ////offset is here
+    //Calculate the chunk size
+    int n=100;
+    char *envval = NULL;
+
     if (argc < 2)
     {
         if (rank == 0)
@@ -73,18 +91,38 @@ int main(int argc, char **argv)
         MPI_Abort(MPI_COMM_WORLD, -1);
     }
 
+    //Total data size
+    if (NULL != (envval = getenv("DATASIZE")))
+    {
+        n = atoi(envval);
+        if (n < 100)
+            n= 100;
+    };
+
+
     Settings settings = Settings::from_json(argv[1]);
 
     GrayScott sim(settings, comm);
     sim.init();
 
+    adios2::ADIOS adios(settings.adios_config, comm);
+    adios2::IO io_main = adios.DeclareIO("SimulationOutput");
+    adios2::IO io_ckpt = adios.DeclareIO("SimulationCheckpoint");
+
     int restart_step = 0;
 
-    Writer writer_main(settings, sim);
-    writer_main.Wopen(settings.output);
+    //@@@@@@@@@@
+    Writer writer_main(settings, sim, io_main);
+    writer_main.Wopen(settings.output, (restart_step > 0));
     
     if (rank == 0)
     {
+        //ftruncate(fd,(sizeof(sim.u_noghost().data())+sizeof(sim.v_noghost().data())+sizeof(int))*n);
+    
+#ifdef DEBUG
+    printf("Total data size: %d\n", n);
+#endif
+        print_io_settings(io_main);
         std::cout << "========================================" << std::endl;
         print_settings(settings, restart_step);
         print_simulator_settings(sim);
@@ -103,6 +141,8 @@ int main(int argc, char **argv)
     log << "step\ttotal_gs\tcompute_gs\twrite_gs" << std::endl;
 #endif
     
+    
+    fd = open("/home/gp.sc.cc.tohoku.ac.jp/tseng/ADIOS2/Test/Tutorial/VE/share/adios2-examples/gray-scott/gs.bp/data.0", O_CREAT | O_WRONLY, 0644);
     for (int it = restart_step; it < settings.steps;)
     {
 #ifdef ENABLE_TIMERS
@@ -114,14 +154,13 @@ int main(int argc, char **argv)
         sim.iterate();
         it++;
 
-        
-
 #ifdef ENABLE_TIMERS
         timer_compute.stop();
         MPI_Barrier(comm);
         timer_write.start();
 #endif
 
+        //Write every plotgap
         if (it % settings.plotgap == 0)
         {
             if (rank == 0)
@@ -132,8 +171,7 @@ int main(int argc, char **argv)
             }
 
             //Write is here
-            // Get the sum of all ranks up to the one before mine and print it
-            writer_main.Wwrite(it, sim, MPI_COMM_WORLD, rank);
+            writer_main.Wwrite(it, sim, fd);
         }
 
 
@@ -148,8 +186,8 @@ int main(int argc, char **argv)
 #endif
     }
 
-    //Close file
-    writer_main.Wclose();
+    //Close the file
+    writer_main.Wclose(fd);
 
 #ifdef ENABLE_TIMERS
     log << "total\t" << timer_total.elapsed() << "\t" << timer_compute.elapsed()

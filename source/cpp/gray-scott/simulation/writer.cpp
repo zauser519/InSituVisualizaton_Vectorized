@@ -6,31 +6,33 @@
 #include <stdio.h>
 #include <unistd.h>
 
-Writer::Writer(const Settings &settings, const GrayScott &sim)
-: settings(settings)
+Writer::Writer(const Settings &settings, const GrayScott &sim, adios2::IO io)
+: settings(settings), io(io)
 {
-    
+    var_u =
+        io.DefineVariable<double>("U", {settings.L, settings.L, settings.L},
+                                  {sim.offset_z, sim.offset_y, sim.offset_x},
+                                  {sim.size_z, sim.size_y, sim.size_x});
+
+    var_v =
+        io.DefineVariable<double>("V", {settings.L, settings.L, settings.L},
+                                  {sim.offset_z, sim.offset_y, sim.offset_x},
+                                  {sim.size_z, sim.size_y, sim.size_x});
+    var_step = io.DefineVariable<int>("step");
 }
 
-void Writer::Wopen(const std::string &fname)
+void Writer::Wopen(const std::string &fname, bool append)
 {
-    fd = open(fname.c_str(), O_CREAT | O_WRONLY, 0644);
+     //Open thre files as original ADIOS2 did, include data.0 as simulated result, md.0 and md.idx as adios2 setting files
+    adios2::Mode mode = adios2::Mode::Write;
+    if (append)
+    {
+        mode = adios2::Mode::Append;
+    }
+    writer = io.Open(fname, mode);
 }
 
-void  Writer::fast_write(void *buf, size_t size)
-{
-  ssize_t bytes_remaining = size;
-  char *ptr = reinterpret_cast<char *>(buf);
-  while (bytes_remaining > 0) 
-  {
-    ssize_t bytes_written = write(fd, ptr, bytes_remaining);
-
-    ptr += bytes_written;
-    bytes_remaining -= bytes_written;
-  }
-}
-
-void Writer::Wwrite(int step, const GrayScott &sim, MPI_Comm comm, int rank)
+void Writer::Wwrite(int step, const GrayScott &sim, int fd)
 {
     if (!sim.size_x || !sim.size_y || !sim.size_z)
     {
@@ -40,27 +42,20 @@ void Writer::Wwrite(int step, const GrayScott &sim, MPI_Comm comm, int rank)
     std::vector<double> u = sim.u_noghost();
     std::vector<double> v = sim.v_noghost();
 
-    //pointer
-    perrank=0;
-    writen_thisstep=0;
-    
-    writen_thisprocessor = u.size() * sizeof(double) + v.size() * sizeof(double);
-    MPI_Exscan(&writen_thisprocessor, &perrank, 1, MPI_UNSIGNED_LONG, MPI_SUM, MPI_COMM_WORLD);
-    //prevent write repeatly
-    if (perrank==0){
-      fast_write(&step, sizeof(int));
-    }
-    lseek(fd, sizeof(int)*step+perrank+perstep, SEEK_SET);
-    fast_write(u.data(), u.size() * sizeof(double));
-    fast_write(v.data(), v.size() * sizeof(double));
-    MPI_Allreduce(&writen_thisprocessor, &writen_thisstep, 1, MPI_UNSIGNED_LONG, MPI_SUM, MPI_COMM_WORLD);
-    perstep += writen_thisstep;
-
+     //Write file into data.0
+     //pointer
+     lseek(fd, step * (sizeof(u.size() * sizeof(double) + sizeof(v.size() * sizeof(double) + sizeof(int)))), SEEK_SET);
+     //Write simulation data
+     write(fd, &step, sizeof(int));
+     write(fd, u.data(), sizeof(u.size() * sizeof(double)));
+     write(fd, v.data(), sizeof(v.size() * sizeof(double)));
 
 }
 
-void Writer::Wclose() 
+void Writer::Wclose(int fd) 
 { 
+    //Close file (ADIOS2's function, cause rewrite data.0)
+    //writer.Close();
     //POSIX close file
     close(fd);
     
