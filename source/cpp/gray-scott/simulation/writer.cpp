@@ -1,67 +1,34 @@
 #include "../../gray-scott/simulation/writer.h"
- 
-#include <string>
 
-#include <fcntl.h>
-#include <stdio.h>
-#include <unistd.h>
-
-Writer::Writer(const Settings &settings, const GrayScott &sim)
-: settings(settings)
+Writer::Writer(const Settings &settings, adios2::IO io)
+: settings(settings), io(io)
 {
-    
+
+    var_u = io.DefineVariable<double>("U", {nz, ny, nx}, {0, 0, 0}, {nz, ny, nx});
+    var_v = io.DefineVariable<double>("V", {nz, ny, nx}, {0, 0, 0}, {nz, ny, nx});
+    var_w = io.DefineVariable<double>("W", {nz, ny, nx}, {0, 0, 0}, {nz, ny, nx});
+    var_rho = io.DefineVariable<double>("rho", {nz, ny, nx}, {0, 0, 0}, {nz, ny, nx});
+
+    var_step = io.DefineVariable<int>("step");
 }
 
-void Writer::Wopen(const std::string &fname)
+void Writer::open(const std::string &fname)
 {
-    fd = open(fname.c_str(), O_CREAT | O_WRONLY, 0644);
+    adios2::Mode mode = adios2::Mode::Write;
+    writer = io.Open(fname, mode);
 }
 
-void  Writer::fast_write(void *buf, size_t size)
+void Writer::write(double u[nz][ny][nx], double v[nz][ny][nx], double w[nz][ny][nx], double rho[nz][ny][nx], int step)
 {
-  ssize_t bytes_remaining = size;
-  char *ptr = reinterpret_cast<char *>(buf);
-  while (bytes_remaining > 0) 
-  {
-    ssize_t bytes_written = write(fd, ptr, bytes_remaining);
 
-    ptr += bytes_written;
-    bytes_remaining -= bytes_written;
-  }
-}
-
-void Writer::Wwrite(int step, const GrayScott &sim, MPI_Comm comm, int rank)
-{
-    if (!sim.size_x || !sim.size_y || !sim.size_z)
-    {
-        return;
-    }
-
-    std::vector<double> u = sim.u_noghost();
-    std::vector<double> v = sim.v_noghost();
-
-    //pointer
-    perrank=0;
-    writen_thisstep=0;
-    
-    writen_thisprocessor = u.size() * sizeof(double) + v.size() * sizeof(double);
-    MPI_Exscan(&writen_thisprocessor, &perrank, 1, MPI_UNSIGNED_LONG, MPI_SUM, MPI_COMM_WORLD);
-    //prevent write repeatly
-    if (perrank==0){
-      fast_write(&step, sizeof(int));
-    }
-    lseek(fd, sizeof(int)*step+perrank+perstep, SEEK_SET);
-    fast_write(u.data(), u.size() * sizeof(double));
-    fast_write(v.data(), v.size() * sizeof(double));
-    MPI_Allreduce(&writen_thisprocessor, &writen_thisstep, 1, MPI_UNSIGNED_LONG, MPI_SUM, MPI_COMM_WORLD);
-    perstep += writen_thisstep;
-
+    writer.BeginStep();
+    writer.Put<int>(var_step, &step);
+    writer.Put<double>(var_u, (double*)u);
+    writer.Put<double>(var_v, (double*)v);
+    writer.Put<double>(var_w, (double*)w);
+    writer.Put<double>(var_rho, (double*)rho);
+    writer.EndStep();
 
 }
 
-void Writer::Wclose() 
-{ 
-    //POSIX close file
-    close(fd);
-    
-}
+void Writer::close() { writer.Close(); }
